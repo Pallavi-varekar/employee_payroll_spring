@@ -1,5 +1,7 @@
 package com.example.employee_payroll_spring.model;
 
+import com.example.employee_payroll_spring.dto.EmployeePayrollDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,14 +16,24 @@ public class Employee {
     private String profilepic;
     private String startDate;
 
-    public Employee(int id, String fNname, String lNamne, long salary, String note, String profilepic, String startDate) {
+    public Employee(int id,EmployeePayrollDTO employee) {
         Id = id;
-        this.fNname = fNname;
-        this.lNamne = lNamne;
-        this.salary = salary;
-        this.note = note;
-        this.profilepic = profilepic;
-        this.startDate = startDate;
+        this.fNname = employee.fNname;
+        this.lNamne = employee.lNamne;
+        this.salary = employee.salary;
+        this.note = employee.note;
+        this.profilepic = employee.profilepic;
+        this.startDate = employee.startDate;
+    }
+
+    public Employee(EmployeePayrollDTO employeePayrollDTO) {
+
+        this.fNname =employeePayrollDTO.fNname;
+        this.lNamne = employeePayrollDTO.lNamne;
+        this.salary = employeePayrollDTO.salary;
+        this.note =employeePayrollDTO.note;
+        this.profilepic = employeePayrollDTO.profilepic;
+        this.startDate = employeePayrollDTO.startDate;
     }
 
     public Employee() {

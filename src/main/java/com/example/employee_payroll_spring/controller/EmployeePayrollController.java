@@ -1,5 +1,6 @@
 package com.example.employee_payroll_spring.controller;
 
+import com.example.employee_payroll_spring.dto.EmployeePayrollDTO;
 import com.example.employee_payroll_spring.model.Employee;
 import com.example.employee_payroll_spring.service.EmployeePayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +18,10 @@ public class EmployeePayrollController {
         return EmployeePayrollService.printMessages();
     }
     @PostMapping("/add")
-    public Employee addEmployeeInfo(@RequestBody Employee employee){
+    public Employee addEmployeeInfo(@RequestBody EmployeePayrollDTO employee){
         return employeePayrollService.addEmployee(employee);
     }
-    @GetMapping("/search{id}")
+    @GetMapping("/search/{id}")
     public Optional<Employee> searchEmployeeById(@PathVariable int id){
         return employeePayrollService.searchEmployeeById(id);
     }

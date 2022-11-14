@@ -18,22 +18,22 @@ public class Employee {
 
     public Employee(int id,EmployeePayrollDTO employee) {
         Id = id;
-        this.fNname = employee.fNname;
-        this.lNamne = employee.lNamne;
-        this.salary = employee.salary;
-        this.note = employee.note;
-        this.profilepic = employee.profilepic;
-        this.startDate = employee.startDate;
+        this.fNname = employee.getfNname();
+        this.lNamne = employee.getlNamne();
+        this.salary = employee.getSalary();
+        this.note = employee.getNote();
+        this.profilepic = employee.getProfilepic();
+        this.startDate = employee.getStartDate();
     }
 
     public Employee(EmployeePayrollDTO employeePayrollDTO) {
 
-        this.fNname =employeePayrollDTO.fNname;
-        this.lNamne = employeePayrollDTO.lNamne;
-        this.salary = employeePayrollDTO.salary;
-        this.note =employeePayrollDTO.note;
-        this.profilepic = employeePayrollDTO.profilepic;
-        this.startDate = employeePayrollDTO.startDate;
+        this.fNname = employeePayrollDTO.getfNname();
+        this.lNamne = employeePayrollDTO.getlNamne();
+        this.salary = employeePayrollDTO.getSalary();
+        this.note = employeePayrollDTO.getNote();
+        this.profilepic = employeePayrollDTO.getProfilepic();
+        this.startDate = employeePayrollDTO.getStartDate();
     }
 
     public Employee() {

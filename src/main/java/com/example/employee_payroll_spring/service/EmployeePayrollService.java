@@ -7,21 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class EmployeePayrollService {
+public class EmployeePayrollService implements EmployeePayrollInterface {
     @Autowired
     EmployeePayrollAppRepo employeePayrollAppRepo;
-
+//private List<EmployeePayrollDTO>emoliyeepayrolllist=new ArrayList<>();
     public static String printMessages() {
         return "Employee Payroll App";
     }
+   // public List<EmployeePayrollDTO>getEmployeePayrollDTO(){
+     //   return emoliyeepayrolllist;
+    //}
+
     public Employee addEmployee(EmployeePayrollDTO employeedto) {
         Employee employee=new Employee(employeedto);
     return employeePayrollAppRepo.save(employee);
     }
+//public EmployeePayrollDTO getEmployeepa
+
+
 
     public Optional<Employee> searchEmployeeById(int id) {
         return employeePayrollAppRepo.findById(id);

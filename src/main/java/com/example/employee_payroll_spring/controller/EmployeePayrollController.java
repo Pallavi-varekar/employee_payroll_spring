@@ -28,22 +28,36 @@ public class EmployeePayrollController {
        // return employeePayrollService.addEmployee(employeePayrollDTO);
     }
     @GetMapping("/search/{id}")
-    public Optional<Employee> searchEmployeeById(@PathVariable int id){
-        return employeePayrollService.searchEmployeeById(id);
+    public ResponseEntity<ResponseDto> searchEmployeeById(@PathVariable int id){
+        Optional<Employee> employee=employeePayrollService.searchEmployeeById(id) ;
+        ResponseDto responseDto=new ResponseDto(" successfully searching employee details by id",employee);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+       // return employeePayrollService.searchEmployeeById(id);
     }
     @GetMapping("/searchall")
-    public List<Employee> searchAllEmployee(){
-        return employeePayrollService.searchAllEmployee();
+    public ResponseEntity<ResponseDto> searchAllEmployee(){
+        List<Employee> employee=employeePayrollService.searchAllEmployee() ;
+        ResponseDto responseDto=new ResponseDto(" successfully searching all employee details ",employee);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+
+       // return employeePayrollService.searchAllEmployee();
     }
     @PutMapping(value = "/update/{id}")
-    public Employee editName(@PathVariable int id,
-                                 @RequestParam(value = "fName") String fname) {
-        return (employeePayrollService.editName(id, fname));
+    public ResponseEntity<ResponseDto> editName(@PathVariable int id,
+                             @RequestBody EmployeePayrollDTO employeePayrollDTO) {
+        Employee editName = employeePayrollService.editName(id, employeePayrollDTO);
+        ResponseDto responseDTO = new ResponseDto("Updated employee data successfully", editName);
+        return new ResponseEntity<>(responseDTO, HttpStatus.OK);
+       // return (employeePayrollService.editName(id, fname))
 
 
     }
     @DeleteMapping("/delete")
-    public void delete(@RequestParam int id){
-        employeePayrollService.DeleteById(id);
+    public ResponseEntity<ResponseDto> delete(@RequestParam int id){
+        Optional<Employee> employee=employeePayrollService.DeleteById(id) ;
+        ResponseDto responseDto = new ResponseDto(" Successfully delete employee detail ",employee);
+
+        return  new ResponseEntity<>(responseDto, HttpStatus.OK);
+       // employeePayrollService.DeleteById(id);
     }
 }

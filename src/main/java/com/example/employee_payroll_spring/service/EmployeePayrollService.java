@@ -1,5 +1,6 @@
 package com.example.employee_payroll_spring.service;
 
+import com.example.employee_payroll_spring.dto.EmployeePayrollDTO;
 import com.example.employee_payroll_spring.model.Employee;
 import com.example.employee_payroll_spring.repo.EmployeePayrollAppRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class EmployeePayrollService {
     public static String printMessages() {
         return "Employee Payroll App";
     }
-    public Employee addEmployee(Employee employee) {
-
+    public Employee addEmployee(EmployeePayrollDTO employeedto) {
+        Employee employee=new Employee(employeedto);
     return employeePayrollAppRepo.save(employee);
     }
 

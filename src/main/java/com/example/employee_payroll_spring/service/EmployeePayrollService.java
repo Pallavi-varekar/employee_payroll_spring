@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +31,7 @@ public class EmployeePayrollService implements EmployeePayrollInterface {
 
 
     public Optional<Employee> searchEmployeeById(int id) {
+       // Employee employee=new Employee( );
         return employeePayrollAppRepo.findById(id);
     }
 
@@ -39,11 +39,12 @@ public class EmployeePayrollService implements EmployeePayrollInterface {
         return employeePayrollAppRepo.findAll();
     }
 
-    public Employee editName(int id, String fname) {
+    public Employee editName(int id, EmployeePayrollDTO employeePayrollDTO) {
         Optional<Employee> employee = employeePayrollAppRepo.findById(id);
         if (employee.get().getId() == id){
-            employee.get().setfNname(fname);
-            return employeePayrollAppRepo.save(employee.get());
+          Employee employee1=new Employee(id,employeePayrollDTO);
+         //   return employeePayrollAppRepo.save(employee.get());
+            return employeePayrollAppRepo.save(employee1);
         }else {
             return null;
         }
@@ -51,8 +52,11 @@ public class EmployeePayrollService implements EmployeePayrollInterface {
 
     }
 
-    public void DeleteById(int id) {
-        employeePayrollAppRepo.deleteById(id);
+    public Optional<Employee> DeleteById(int id) {
+        Optional <Employee> employee = employeePayrollAppRepo.findById(id);
+        //employeePayrollAppRepo.deleteById(id);
+        employeePayrollAppRepo.delete(employee.get());
+        return employee;
     }
 }
 

@@ -10,6 +10,6 @@ public interface EmployeePayrollInterface {
     Employee addEmployee(EmployeePayrollDTO employeedto);
     Optional<Employee> searchEmployeeById(int id);
     List<Employee> searchAllEmployee();
-    Employee editName(int id, String fname);
-    void DeleteById(int id) ;
+    Employee editName(int id,EmployeePayrollDTO employeePayrollDTO);
+    Optional<Employee> DeleteById(int id) ;
 }

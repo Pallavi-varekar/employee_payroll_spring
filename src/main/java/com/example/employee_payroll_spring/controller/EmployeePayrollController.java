@@ -1,9 +1,12 @@
 package com.example.employee_payroll_spring.controller;
 
 import com.example.employee_payroll_spring.dto.EmployeePayrollDTO;
+import com.example.employee_payroll_spring.dto.ResponseDto;
 import com.example.employee_payroll_spring.model.Employee;
 import com.example.employee_payroll_spring.service.EmployeePayrollService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +21,11 @@ public class EmployeePayrollController {
         return EmployeePayrollService.printMessages();
     }
     @PostMapping("/add")
-    public Employee addEmployeeInfo(@RequestBody EmployeePayrollDTO employee){
-        return employeePayrollService.addEmployee(employee);
+    public ResponseEntity<ResponseDto> addEmployeeInfo(@RequestBody EmployeePayrollDTO employeePayrollDTO){
+     Employee employee=employeePayrollService.addEmployee(employeePayrollDTO) ;
+        ResponseDto responseDto=new ResponseDto(" successfully added employee details",employee);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+       // return employeePayrollService.addEmployee(employeePayrollDTO);
     }
     @GetMapping("/search/{id}")
     public Optional<Employee> searchEmployeeById(@PathVariable int id){

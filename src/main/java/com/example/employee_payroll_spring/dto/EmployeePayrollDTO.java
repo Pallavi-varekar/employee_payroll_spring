@@ -2,12 +2,12 @@ package com.example.employee_payroll_spring.dto;
 
 public class EmployeePayrollDTO {
 
-    public String fNname;
-    public String lNamne;
-    public long salary;
-    public String note;
-    public String profilepic;
-    public String startDate;
+    private String fNname;
+    private String lNamne;
+    private long salary;
+    private String note;
+    private String profilepic;
+    private String startDate;
 
     public EmployeePayrollDTO(String fNname, String lNamne, long salary, String note, String profilepic, String startDate) {
         this.fNname = fNname;

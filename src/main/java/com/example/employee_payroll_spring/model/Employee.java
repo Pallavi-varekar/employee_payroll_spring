@@ -17,7 +17,7 @@ public class Employee {
     private String startDate;
 
     public Employee(int id,EmployeePayrollDTO employee) {
-        Id = id;
+        this.Id = id;
         this.fNname = employee.getfNname();
         this.lNamne = employee.getlNamne();
         this.salary = employee.getSalary();

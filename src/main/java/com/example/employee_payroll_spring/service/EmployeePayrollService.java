@@ -7,44 +7,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class EmployeePayrollService implements EmployeePayrollInterface {
+    List<Employee> employeeList = new ArrayList<>();
     @Autowired
     EmployeePayrollAppRepo employeePayrollAppRepo;
-//private List<EmployeePayrollDTO>emoliyeepayrolllist=new ArrayList<>();
+
     public static String printMessages() {
         return "Employee Payroll App";
     }
-   // public List<EmployeePayrollDTO>getEmployeePayrollDTO(){
-     //   return emoliyeepayrolllist;
-    //}
 
-    public Employee addEmployee(EmployeePayrollDTO employeedto) {
-        Employee employee=new Employee(employeedto);
-    return employeePayrollAppRepo.save(employee);
+
+        public Employee addEmployee(EmployeePayrollDTO employeedto) {
+
+            Employee employee=new Employee(employeedto);    //employee object created for repository
+            employeeList.add(employee);      //add data to arraylist
+       employeePayrollAppRepo.save(employee); // add data to repo
+            return employee;
+
     }
-//public EmployeePayrollDTO getEmployeepa
 
 
 
-    public Optional<Employee> searchEmployeeById(int id) {
+
+    public List<Employee> searchEmployeeById(int id) {
        // Employee employee=new Employee( );
-        return employeePayrollAppRepo.findById(id);
+        Employee employee1 = employeeList.get(id);// array list
+       // return employeePayrollAppRepo.findById(id);
+        return employeeList;
     }
 
     public List<Employee> searchAllEmployee() {
-        return employeePayrollAppRepo.findAll();
+        List<Employee> employeeList2 = employeeList.stream().toList();
+        // employeePayrollAppRepo.findAll();
+         return  employeeList2;
     }
 
     public Employee editName(int id, EmployeePayrollDTO employeePayrollDTO) {
         Optional<Employee> employee = employeePayrollAppRepo.findById(id);
+        Employee employee2 = employeeList.get(id);                                 //arraylist
         if (employee.get().getId() == id){
-          Employee employee1=new Employee(id,employeePayrollDTO);
+            Employee employee3 = new Employee(id,employeePayrollDTO);
+         // Employee employee1=new Employee(id,employeePayrollDTO);
          //   return employeePayrollAppRepo.save(employee.get());
-            return employeePayrollAppRepo.save(employee1);
+            employeeList.add(employee3);                             //arraylist
+            return employeePayrollAppRepo.save(employee3);
         }else {
             return null;
         }
@@ -55,7 +66,8 @@ public class EmployeePayrollService implements EmployeePayrollInterface {
     public Optional<Employee> DeleteById(int id) {
         Optional <Employee> employee = employeePayrollAppRepo.findById(id);
         //employeePayrollAppRepo.deleteById(id);
-        employeePayrollAppRepo.delete(employee.get());
+       // employeePayrollAppRepo.delete(employee.get());
+        employeeList.remove(employee.get());         //array list
         return employee;
     }
 }

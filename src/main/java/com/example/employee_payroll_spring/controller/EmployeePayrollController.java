@@ -29,7 +29,7 @@ public class EmployeePayrollController {
     }
     @GetMapping("/search/{id}")
     public ResponseEntity<ResponseDto> searchEmployeeById(@PathVariable int id){
-        List<Employee> employee=employeePayrollService.searchEmployeeById(id) ;
+        Optional<Employee> employee=employeePayrollService.searchEmployeeById(id) ;
         ResponseDto responseDto=new ResponseDto(" successfully searching employee details by id",employee);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
        // return employeePayrollService.searchEmployeeById(id);

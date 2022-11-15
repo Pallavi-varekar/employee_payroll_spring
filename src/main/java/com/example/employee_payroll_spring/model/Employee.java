@@ -1,25 +1,32 @@
 package com.example.employee_payroll_spring.model;
 
 import com.example.employee_payroll_spring.dto.EmployeePayrollDTO;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
+@Data
+
+@NoArgsConstructor
+//@AllArgsConstructor
+//@Getter
+@Table
+
 public class Employee {
     @Id
     @GeneratedValue
     private int Id;
-    private String fNname;
-    private String lNamne;
+    private String fName;
+    private String lName;
     private long salary;
     private String note;
     private String profilepic;
     private String startDate;
-
-    public Employee(int id,EmployeePayrollDTO employee) {
+     public Employee(int id,EmployeePayrollDTO employee) {
         this.Id = id;
-        this.fNname = employee.getfNname();
-        this.lNamne = employee.getlNamne();
+        this.fName = employee.getFName();
+        this.lName = employee.getLName();
         this.salary = employee.getSalary();
         this.note = employee.getNote();
         this.profilepic = employee.getProfilepic();
@@ -28,15 +35,15 @@ public class Employee {
 
     public Employee(EmployeePayrollDTO employeePayrollDTO) {
 
-        this.fNname = employeePayrollDTO.getfNname();
-        this.lNamne = employeePayrollDTO.getlNamne();
+        this.fName = employeePayrollDTO.getFName();
+        this.lName = employeePayrollDTO.getLName();
         this.salary = employeePayrollDTO.getSalary();
         this.note = employeePayrollDTO.getNote();
         this.profilepic = employeePayrollDTO.getProfilepic();
         this.startDate = employeePayrollDTO.getStartDate();
     }
 
-    public Employee() {
+  /*  public Employee() {
     }
 
     public int getId() {
@@ -93,7 +100,7 @@ public class Employee {
 
     public void setStartDate(String startDate) {
         this.startDate = startDate;
-    }
+    }*/
 }
 
 

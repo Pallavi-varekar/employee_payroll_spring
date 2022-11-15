@@ -3,6 +3,7 @@ package com.example.employee_payroll_spring.service;
 import com.example.employee_payroll_spring.dto.EmployeePayrollDTO;
 import com.example.employee_payroll_spring.model.Employee;
 import com.example.employee_payroll_spring.repo.EmployeePayrollAppRepo;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+
 public class EmployeePayrollService implements EmployeePayrollInterface {
     List<Employee> employeeList = new ArrayList<>();
     @Autowired
